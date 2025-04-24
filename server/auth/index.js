@@ -1,21 +1,37 @@
 const router = require("express").Router();
 const db = require("../db");
 const jwt = require("jsonwebtoken");
+const { prisma } = require("../common");
+const bcrypt = require("bcrypt");
 
 // Register a new instructor account
 router.post("/register", async (req, res, next) => {
+  // try {
+  //   const {
+  //     rows: [instructor],
+  //   } = await db.query(
+  //     "INSERT INTO instructor (username, password) VALUES ($1, $2) RETURNING *",
+  //     [req.body.username, req.body.password]
+  //   );
+
+  //   // Create a token with the instructor id
+  //   const token = jwt.sign({ id: instructor.id }, process.env.JWT);
+
+  //   res.status(201).send({ token });
+  // } catch (error) {
+  //   next(error);
+  // }
   try {
-    const {
-      rows: [instructor],
-    } = await db.query(
-      "INSERT INTO instructor (username, password) VALUES ($1, $2) RETURNING *",
-      [req.body.username, req.body.password]
-    );
-
-    // Create a token with the instructor id
-    const token = jwt.sign({ id: instructor.id }, process.env.JWT);
-
-    res.status(201).send({ token });
+    console.log("email:", req.body.username, ", pass:", req.body.password);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const response = await prisma.instructor.create({
+      data: {
+        username: req.body.username,
+        password: hashedPassword,
+      },
+    });
+    return response;
   } catch (error) {
     next(error);
   }
