@@ -21,15 +21,19 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
+    "@prisma/client": "^6.6.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
     "pg": "^8.11.0",
+    "prisma": "^6.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.0",
-    "react-router-dom": "^6.12.1"
+    "react-router-dom": "^6.12.1",
+    "uuid": "^11.1.0"
   }
 }
