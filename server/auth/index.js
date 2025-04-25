@@ -43,20 +43,26 @@ router.post("/register", async (req, res, next) => {
 // Login to an existing instructor account
 router.post("/login", async (req, res, next) => {
   try {
-    const {
-      rows: [instructor],
-    } = await db.query(
-      "SELECT * FROM instructor WHERE username = $1 AND password = $2",
-      [req.body.username, req.body.password]
-    );
+    // const {
+    //   rows: [instructor],
+    // } = await db.query(
+    //   "SELECT * FROM instructor WHERE username = $1 AND password = $2",
+    //   [req.body.username, req.body.password]
+    // );
+    // if (!instructor) {
+    //   return res.status(401).send("Invalid login credentials.");
+    // }
+    // // Create a token with the instructor id
+    // const token = jwt.sign({ id: instructor.id }, process.env.JWT);
+    // res.send({ token });
 
-    if (!instructor) {
-      return res.status(401).send("Invalid login credentials.");
-    }
-
-    // Create a token with the instructor id
-    const token = jwt.sign({ id: instructor.id }, process.env.JWT);
-
+    const response = await prisma.instructor.findFirst({
+      where: {
+        username: req.body.username,
+      },
+    });
+    console.log(response);
+    const token = jwt.sign({ id: response.id }, process.env.JWT);
     res.send({ token });
   } catch (error) {
     next(error);
