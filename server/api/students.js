@@ -66,12 +66,6 @@ router.post("/", async (req, res, next) => {
 // Update a student
 router.put("/:id", async (req, res, next) => {
   try {
-    // const {
-    //   rows: [student],
-    // } = await db.query(
-    //   "UPDATE student SET name = $1, cohort = $2 WHERE id = $3 AND instructorId = $4 RETURNING *",
-    //   [req.body.name, req.body.cohort, req.params.id, req.user.id]
-    // );
     const student = await prisma.student.update({
       where: {
         id: parseInt(req.params.id, 10),
