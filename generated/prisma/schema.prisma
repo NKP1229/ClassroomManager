@@ -14,15 +14,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model instructor {
-  id       Int     @id @default(autoincrement())
-  username String? @unique
-  password String? @db.VarChar(100)
+model Instructor {
+  id       Int       @id @default(autoincrement())
+  username String?   @unique
+  password String?   @db.VarChar(100)
+  students Student[]
 }
 
-model student {
-  id           Int     @id @default(autoincrement())
-  name         String? @db.VarChar(20)
-  cohort       String? @db.VarChar(100)
-  instructorId Int?
+model Student {
+  id           Int        @id @default(autoincrement())
+  name         String?    @db.VarChar(20)
+  cohort       String?    @db.VarChar(100)
+  instructor   Instructor @relation(fields: [instructorId], references: [id])
+  instructorId Int
 }

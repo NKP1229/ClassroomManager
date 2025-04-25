@@ -33,17 +33,14 @@ router.get("/", async (req, res, next) => {
 // Get a student by id
 router.get("/:id", async (req, res, next) => {
   try {
-    const {
-      rows: [student],
-    } = await db.query(
-      "SELECT * FROM student WHERE id = $1 AND instructorId = $2",
-      [req.params.id, req.user.id]
-    );
-
+    const student = await prisma.student.findFirst({
+      where: {
+        id: req.user.id,
+      },
+    });
     if (!student) {
       return res.status(404).send("Student not found.");
     }
-
     res.send(student);
   } catch (error) {
     next(error);
@@ -89,13 +86,19 @@ router.put("/:id", async (req, res, next) => {
 // Delete a student by id
 router.delete("/:id", async (req, res, next) => {
   try {
-    const {
-      rows: [student],
-    } = await db.query(
-      "DELETE FROM student WHERE id = $1 AND instructorId = $2 RETURNING *",
-      [req.params.id, req.user.id]
-    );
-
+    // const {
+    //   rows: [student],
+    // } = await db.query(
+    //   "DELETE FROM student WHERE id = $1 AND instructorId = $2 RETURNING *",
+    //   [req.params.id, req.user.id]
+    // );
+    const student = await prisma.student.delete({
+      where: {
+        id: parseInt(req.params.id, 10),
+        instructorId: req.user.id,
+      },
+    });
+    console.log("student", student);
     if (!student) {
       return res.status(404).send("Student not found.");
     }
