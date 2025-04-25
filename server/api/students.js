@@ -66,13 +66,22 @@ router.post("/", async (req, res, next) => {
 // Update a student
 router.put("/:id", async (req, res, next) => {
   try {
-    const {
-      rows: [student],
-    } = await db.query(
-      "UPDATE student SET name = $1, cohort = $2 WHERE id = $3 AND instructorId = $4 RETURNING *",
-      [req.body.name, req.body.cohort, req.params.id, req.user.id]
-    );
-
+    // const {
+    //   rows: [student],
+    // } = await db.query(
+    //   "UPDATE student SET name = $1, cohort = $2 WHERE id = $3 AND instructorId = $4 RETURNING *",
+    //   [req.body.name, req.body.cohort, req.params.id, req.user.id]
+    // );
+    const student = await prisma.student.update({
+      where: {
+        id: parseInt(req.params.id, 10),
+      },
+      data: {
+        name: req.body.name,
+        cohort: req.body.cohort,
+        instructorId: req.user.id,
+      },
+    });
     if (!student) {
       return res.status(404).send("Student not found.");
     }
@@ -86,23 +95,15 @@ router.put("/:id", async (req, res, next) => {
 // Delete a student by id
 router.delete("/:id", async (req, res, next) => {
   try {
-    // const {
-    //   rows: [student],
-    // } = await db.query(
-    //   "DELETE FROM student WHERE id = $1 AND instructorId = $2 RETURNING *",
-    //   [req.params.id, req.user.id]
-    // );
     const student = await prisma.student.delete({
       where: {
         id: parseInt(req.params.id, 10),
         instructorId: req.user.id,
       },
     });
-    console.log("student", student);
     if (!student) {
       return res.status(404).send("Student not found.");
     }
-
     res.send(student);
   } catch (error) {
     next(error);
