@@ -161,17 +161,16 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://postgres@localhost:5432/34a-classroom_manager?schema=public"
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel instructor {\n  id       Int     @id @default(autoincrement())\n  username String? @unique\n  password String? @db.VarChar(100)\n  // students  student[] @relation \n}\n\nmodel student {\n  id           Int     @id @default(autoincrement())\n  name         String? @db.VarChar(20)\n  cohort       String? @db.VarChar(100)\n  instructorId Int?\n  // instructor    instructor? @relation(fields: [instructorId], references: [id])\n}\n",
-  "inlineSchemaHash": "4a561626811a0f50402886b8efc586f83fee6e047326a21b3de4d3ca42800734",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel instructor {\n  id       Int     @id @default(autoincrement())\n  username String? @unique\n  password String? @db.VarChar(100)\n}\n\nmodel student {\n  id           Int     @id @default(autoincrement())\n  name         String? @db.VarChar(20)\n  cohort       String? @db.VarChar(100)\n  instructorId Int?\n}\n",
+  "inlineSchemaHash": "d081d85c542288970b25343135cc447784068e3201a14b8702970c1e6a19c35c",
   "copyEngine": true
 }
 config.dirname = '/'
