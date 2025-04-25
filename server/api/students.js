@@ -1,6 +1,7 @@
 // An instructor can only access their own students' data.
 const router = require("express").Router();
 const db = require("../db");
+const { prisma } = require("../common");
 
 // Deny access if user is not logged in
 router.use((req, res, next) => {
@@ -13,10 +14,16 @@ router.use((req, res, next) => {
 // Get all students
 router.get("/", async (req, res, next) => {
   try {
-    const { rows: students } = await db.query(
-      "SELECT * FROM student WHERE instructorId = $1",
-      [req.user.id]
-    );
+    const instructor = await prisma.instructor.findFirst({
+      where: {
+        id: req.user.id,
+      },
+    });
+    const students = await prisma.student.findMany({
+      where: {
+        instructorId: instructor.id,
+      },
+    });
     res.send(students);
   } catch (error) {
     next(error);
@@ -46,12 +53,13 @@ router.get("/:id", async (req, res, next) => {
 // Create a new student
 router.post("/", async (req, res, next) => {
   try {
-    const {
-      rows: [student],
-    } = await db.query(
-      "INSERT INTO student (name, cohort, instructorId) VALUES ($1, $2, $3) RETURNING *",
-      [req.body.name, req.body.cohort, req.user.id]
-    );
+    const student = await prisma.student.create({
+      data: {
+        name: req.body.name,
+        cohort: req.body.cohort,
+        instructorId: req.user.id,
+      },
+    });
     res.status(201).send(student);
   } catch (error) {
     next(error);

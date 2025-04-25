@@ -955,36 +955,6 @@ export namespace Prisma {
    */
 
 
-  /**
-   * Count Type InstructorCountOutputType
-   */
-
-  export type InstructorCountOutputType = {
-    students: number
-  }
-
-  export type InstructorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    students?: boolean | InstructorCountOutputTypeCountStudentsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * InstructorCountOutputType without action
-   */
-  export type InstructorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the InstructorCountOutputType
-     */
-    select?: InstructorCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * InstructorCountOutputType without action
-   */
-  export type InstructorCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: studentWhereInput
-  }
-
 
   /**
    * Models
@@ -1172,8 +1142,6 @@ export namespace Prisma {
     id?: boolean
     username?: boolean
     password?: boolean
-    students?: boolean | instructor$studentsArgs<ExtArgs>
-    _count?: boolean | InstructorCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["instructor"]>
 
   export type instructorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1195,18 +1163,10 @@ export namespace Prisma {
   }
 
   export type instructorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password", ExtArgs["result"]["instructor"]>
-  export type instructorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    students?: boolean | instructor$studentsArgs<ExtArgs>
-    _count?: boolean | InstructorCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type instructorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type instructorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $instructorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "instructor"
-    objects: {
-      students: Prisma.$studentPayload<ExtArgs>[]
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       username: string | null
@@ -1605,7 +1565,6 @@ export namespace Prisma {
    */
   export interface Prisma__instructorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    students<T extends instructor$studentsArgs<ExtArgs> = {}>(args?: Subset<T, instructor$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$studentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1655,10 +1614,6 @@ export namespace Prisma {
      */
     omit?: instructorOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
-    /**
      * Filter, which instructor to fetch.
      */
     where: instructorWhereUniqueInput
@@ -1677,10 +1632,6 @@ export namespace Prisma {
      */
     omit?: instructorOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
-    /**
      * Filter, which instructor to fetch.
      */
     where: instructorWhereUniqueInput
@@ -1698,10 +1649,6 @@ export namespace Prisma {
      * Omit specific fields from the instructor
      */
     omit?: instructorOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
     /**
      * Filter, which instructor to fetch.
      */
@@ -1751,10 +1698,6 @@ export namespace Prisma {
      */
     omit?: instructorOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
-    /**
      * Filter, which instructor to fetch.
      */
     where?: instructorWhereInput
@@ -1803,10 +1746,6 @@ export namespace Prisma {
      */
     omit?: instructorOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
-    /**
      * Filter, which instructors to fetch.
      */
     where?: instructorWhereInput
@@ -1849,10 +1788,6 @@ export namespace Prisma {
      * Omit specific fields from the instructor
      */
     omit?: instructorOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
     /**
      * The data needed to create a instructor.
      */
@@ -1901,10 +1836,6 @@ export namespace Prisma {
      * Omit specific fields from the instructor
      */
     omit?: instructorOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
     /**
      * The data needed to update a instructor.
      */
@@ -1972,10 +1903,6 @@ export namespace Prisma {
      */
     omit?: instructorOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
-    /**
      * The filter to search for the instructor to update in case it exists.
      */
     where: instructorWhereUniqueInput
@@ -2002,10 +1929,6 @@ export namespace Prisma {
      */
     omit?: instructorOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
-    /**
      * Filter which instructor to delete.
      */
     where: instructorWhereUniqueInput
@@ -2026,30 +1949,6 @@ export namespace Prisma {
   }
 
   /**
-   * instructor.students
-   */
-  export type instructor$studentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the student
-     */
-    select?: studentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the student
-     */
-    omit?: studentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
-    where?: studentWhereInput
-    orderBy?: studentOrderByWithRelationInput | studentOrderByWithRelationInput[]
-    cursor?: studentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
-  }
-
-  /**
    * instructor without action
    */
   export type instructorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2061,10 +1960,6 @@ export namespace Prisma {
      * Omit specific fields from the instructor
      */
     omit?: instructorOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
   }
 
 
@@ -2262,7 +2157,6 @@ export namespace Prisma {
     name?: boolean
     cohort?: boolean
     instructorId?: boolean
-    instructor?: boolean | student$instructorArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
   export type studentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2270,7 +2164,6 @@ export namespace Prisma {
     name?: boolean
     cohort?: boolean
     instructorId?: boolean
-    instructor?: boolean | student$instructorArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
   export type studentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2278,7 +2171,6 @@ export namespace Prisma {
     name?: boolean
     cohort?: boolean
     instructorId?: boolean
-    instructor?: boolean | student$instructorArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
   export type studentSelectScalar = {
@@ -2289,21 +2181,10 @@ export namespace Prisma {
   }
 
   export type studentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "cohort" | "instructorId", ExtArgs["result"]["student"]>
-  export type studentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    instructor?: boolean | student$instructorArgs<ExtArgs>
-  }
-  export type studentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    instructor?: boolean | student$instructorArgs<ExtArgs>
-  }
-  export type studentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    instructor?: boolean | student$instructorArgs<ExtArgs>
-  }
 
   export type $studentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "student"
-    objects: {
-      instructor: Prisma.$instructorPayload<ExtArgs> | null
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string | null
@@ -2703,7 +2584,6 @@ export namespace Prisma {
    */
   export interface Prisma__studentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    instructor<T extends student$instructorArgs<ExtArgs> = {}>(args?: Subset<T, student$instructorArgs<ExtArgs>>): Prisma__instructorClient<$Result.GetResult<Prisma.$instructorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2754,10 +2634,6 @@ export namespace Prisma {
      */
     omit?: studentOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
-    /**
      * Filter, which student to fetch.
      */
     where: studentWhereUniqueInput
@@ -2776,10 +2652,6 @@ export namespace Prisma {
      */
     omit?: studentOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
-    /**
      * Filter, which student to fetch.
      */
     where: studentWhereUniqueInput
@@ -2797,10 +2669,6 @@ export namespace Prisma {
      * Omit specific fields from the student
      */
     omit?: studentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
     /**
      * Filter, which student to fetch.
      */
@@ -2850,10 +2718,6 @@ export namespace Prisma {
      */
     omit?: studentOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
-    /**
      * Filter, which student to fetch.
      */
     where?: studentWhereInput
@@ -2902,10 +2766,6 @@ export namespace Prisma {
      */
     omit?: studentOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
-    /**
      * Filter, which students to fetch.
      */
     where?: studentWhereInput
@@ -2949,10 +2809,6 @@ export namespace Prisma {
      */
     omit?: studentOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
-    /**
      * The data needed to create a student.
      */
     data?: XOR<studentCreateInput, studentUncheckedCreateInput>
@@ -2986,10 +2842,6 @@ export namespace Prisma {
      */
     data: studentCreateManyInput | studentCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3004,10 +2856,6 @@ export namespace Prisma {
      * Omit specific fields from the student
      */
     omit?: studentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
     /**
      * The data needed to update a student.
      */
@@ -3060,10 +2908,6 @@ export namespace Prisma {
      * Limit how many students to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3078,10 +2922,6 @@ export namespace Prisma {
      * Omit specific fields from the student
      */
     omit?: studentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
     /**
      * The filter to search for the student to update in case it exists.
      */
@@ -3109,10 +2949,6 @@ export namespace Prisma {
      */
     omit?: studentOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
-    /**
      * Filter which student to delete.
      */
     where: studentWhereUniqueInput
@@ -3133,25 +2969,6 @@ export namespace Prisma {
   }
 
   /**
-   * student.instructor
-   */
-  export type student$instructorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the instructor
-     */
-    select?: instructorSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the instructor
-     */
-    omit?: instructorOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: instructorInclude<ExtArgs> | null
-    where?: instructorWhereInput
-  }
-
-  /**
    * student without action
    */
   export type studentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3163,10 +2980,6 @@ export namespace Prisma {
      * Omit specific fields from the student
      */
     omit?: studentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: studentInclude<ExtArgs> | null
   }
 
 
@@ -3284,14 +3097,12 @@ export namespace Prisma {
     id?: IntFilter<"instructor"> | number
     username?: StringNullableFilter<"instructor"> | string | null
     password?: StringNullableFilter<"instructor"> | string | null
-    students?: StudentListRelationFilter
   }
 
   export type instructorOrderByWithRelationInput = {
     id?: SortOrder
     username?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
-    students?: studentOrderByRelationAggregateInput
   }
 
   export type instructorWhereUniqueInput = Prisma.AtLeast<{
@@ -3301,7 +3112,6 @@ export namespace Prisma {
     OR?: instructorWhereInput[]
     NOT?: instructorWhereInput | instructorWhereInput[]
     password?: StringNullableFilter<"instructor"> | string | null
-    students?: StudentListRelationFilter
   }, "id" | "username">
 
   export type instructorOrderByWithAggregationInput = {
@@ -3332,7 +3142,6 @@ export namespace Prisma {
     name?: StringNullableFilter<"student"> | string | null
     cohort?: StringNullableFilter<"student"> | string | null
     instructorId?: IntNullableFilter<"student"> | number | null
-    instructor?: XOR<InstructorNullableScalarRelationFilter, instructorWhereInput> | null
   }
 
   export type studentOrderByWithRelationInput = {
@@ -3340,7 +3149,6 @@ export namespace Prisma {
     name?: SortOrderInput | SortOrder
     cohort?: SortOrderInput | SortOrder
     instructorId?: SortOrderInput | SortOrder
-    instructor?: instructorOrderByWithRelationInput
   }
 
   export type studentWhereUniqueInput = Prisma.AtLeast<{
@@ -3351,7 +3159,6 @@ export namespace Prisma {
     name?: StringNullableFilter<"student"> | string | null
     cohort?: StringNullableFilter<"student"> | string | null
     instructorId?: IntNullableFilter<"student"> | number | null
-    instructor?: XOR<InstructorNullableScalarRelationFilter, instructorWhereInput> | null
   }, "id">
 
   export type studentOrderByWithAggregationInput = {
@@ -3379,27 +3186,23 @@ export namespace Prisma {
   export type instructorCreateInput = {
     username?: string | null
     password?: string | null
-    students?: studentCreateNestedManyWithoutInstructorInput
   }
 
   export type instructorUncheckedCreateInput = {
     id?: number
     username?: string | null
     password?: string | null
-    students?: studentUncheckedCreateNestedManyWithoutInstructorInput
   }
 
   export type instructorUpdateInput = {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
-    students?: studentUpdateManyWithoutInstructorNestedInput
   }
 
   export type instructorUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
-    students?: studentUncheckedUpdateManyWithoutInstructorNestedInput
   }
 
   export type instructorCreateManyInput = {
@@ -3422,7 +3225,7 @@ export namespace Prisma {
   export type studentCreateInput = {
     name?: string | null
     cohort?: string | null
-    instructor?: instructorCreateNestedOneWithoutStudentsInput
+    instructorId?: number | null
   }
 
   export type studentUncheckedCreateInput = {
@@ -3435,7 +3238,7 @@ export namespace Prisma {
   export type studentUpdateInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     cohort?: NullableStringFieldUpdateOperationsInput | string | null
-    instructor?: instructorUpdateOneWithoutStudentsNestedInput
+    instructorId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type studentUncheckedUpdateInput = {
@@ -3455,6 +3258,7 @@ export namespace Prisma {
   export type studentUpdateManyMutationInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     cohort?: NullableStringFieldUpdateOperationsInput | string | null
+    instructorId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type studentUncheckedUpdateManyInput = {
@@ -3490,19 +3294,9 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type StudentListRelationFilter = {
-    every?: studentWhereInput
-    some?: studentWhereInput
-    none?: studentWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type studentOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type instructorCountOrderByAggregateInput = {
@@ -3576,11 +3370,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type InstructorNullableScalarRelationFilter = {
-    is?: instructorWhereInput | null
-    isNot?: instructorWhereInput | null
-  }
-
   export type studentCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -3628,36 +3417,8 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type studentCreateNestedManyWithoutInstructorInput = {
-    create?: XOR<studentCreateWithoutInstructorInput, studentUncheckedCreateWithoutInstructorInput> | studentCreateWithoutInstructorInput[] | studentUncheckedCreateWithoutInstructorInput[]
-    connectOrCreate?: studentCreateOrConnectWithoutInstructorInput | studentCreateOrConnectWithoutInstructorInput[]
-    createMany?: studentCreateManyInstructorInputEnvelope
-    connect?: studentWhereUniqueInput | studentWhereUniqueInput[]
-  }
-
-  export type studentUncheckedCreateNestedManyWithoutInstructorInput = {
-    create?: XOR<studentCreateWithoutInstructorInput, studentUncheckedCreateWithoutInstructorInput> | studentCreateWithoutInstructorInput[] | studentUncheckedCreateWithoutInstructorInput[]
-    connectOrCreate?: studentCreateOrConnectWithoutInstructorInput | studentCreateOrConnectWithoutInstructorInput[]
-    createMany?: studentCreateManyInstructorInputEnvelope
-    connect?: studentWhereUniqueInput | studentWhereUniqueInput[]
-  }
-
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
-  }
-
-  export type studentUpdateManyWithoutInstructorNestedInput = {
-    create?: XOR<studentCreateWithoutInstructorInput, studentUncheckedCreateWithoutInstructorInput> | studentCreateWithoutInstructorInput[] | studentUncheckedCreateWithoutInstructorInput[]
-    connectOrCreate?: studentCreateOrConnectWithoutInstructorInput | studentCreateOrConnectWithoutInstructorInput[]
-    upsert?: studentUpsertWithWhereUniqueWithoutInstructorInput | studentUpsertWithWhereUniqueWithoutInstructorInput[]
-    createMany?: studentCreateManyInstructorInputEnvelope
-    set?: studentWhereUniqueInput | studentWhereUniqueInput[]
-    disconnect?: studentWhereUniqueInput | studentWhereUniqueInput[]
-    delete?: studentWhereUniqueInput | studentWhereUniqueInput[]
-    connect?: studentWhereUniqueInput | studentWhereUniqueInput[]
-    update?: studentUpdateWithWhereUniqueWithoutInstructorInput | studentUpdateWithWhereUniqueWithoutInstructorInput[]
-    updateMany?: studentUpdateManyWithWhereWithoutInstructorInput | studentUpdateManyWithWhereWithoutInstructorInput[]
-    deleteMany?: studentScalarWhereInput | studentScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -3666,36 +3427,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type studentUncheckedUpdateManyWithoutInstructorNestedInput = {
-    create?: XOR<studentCreateWithoutInstructorInput, studentUncheckedCreateWithoutInstructorInput> | studentCreateWithoutInstructorInput[] | studentUncheckedCreateWithoutInstructorInput[]
-    connectOrCreate?: studentCreateOrConnectWithoutInstructorInput | studentCreateOrConnectWithoutInstructorInput[]
-    upsert?: studentUpsertWithWhereUniqueWithoutInstructorInput | studentUpsertWithWhereUniqueWithoutInstructorInput[]
-    createMany?: studentCreateManyInstructorInputEnvelope
-    set?: studentWhereUniqueInput | studentWhereUniqueInput[]
-    disconnect?: studentWhereUniqueInput | studentWhereUniqueInput[]
-    delete?: studentWhereUniqueInput | studentWhereUniqueInput[]
-    connect?: studentWhereUniqueInput | studentWhereUniqueInput[]
-    update?: studentUpdateWithWhereUniqueWithoutInstructorInput | studentUpdateWithWhereUniqueWithoutInstructorInput[]
-    updateMany?: studentUpdateManyWithWhereWithoutInstructorInput | studentUpdateManyWithWhereWithoutInstructorInput[]
-    deleteMany?: studentScalarWhereInput | studentScalarWhereInput[]
-  }
-
-  export type instructorCreateNestedOneWithoutStudentsInput = {
-    create?: XOR<instructorCreateWithoutStudentsInput, instructorUncheckedCreateWithoutStudentsInput>
-    connectOrCreate?: instructorCreateOrConnectWithoutStudentsInput
-    connect?: instructorWhereUniqueInput
-  }
-
-  export type instructorUpdateOneWithoutStudentsNestedInput = {
-    create?: XOR<instructorCreateWithoutStudentsInput, instructorUncheckedCreateWithoutStudentsInput>
-    connectOrCreate?: instructorCreateOrConnectWithoutStudentsInput
-    upsert?: instructorUpsertWithoutStudentsInput
-    disconnect?: instructorWhereInput | boolean
-    delete?: instructorWhereInput | boolean
-    connect?: instructorWhereUniqueInput
-    update?: XOR<XOR<instructorUpdateToOneWithWhereWithoutStudentsInput, instructorUpdateWithoutStudentsInput>, instructorUncheckedUpdateWithoutStudentsInput>
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -3811,114 +3542,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type studentCreateWithoutInstructorInput = {
-    name?: string | null
-    cohort?: string | null
-  }
-
-  export type studentUncheckedCreateWithoutInstructorInput = {
-    id?: number
-    name?: string | null
-    cohort?: string | null
-  }
-
-  export type studentCreateOrConnectWithoutInstructorInput = {
-    where: studentWhereUniqueInput
-    create: XOR<studentCreateWithoutInstructorInput, studentUncheckedCreateWithoutInstructorInput>
-  }
-
-  export type studentCreateManyInstructorInputEnvelope = {
-    data: studentCreateManyInstructorInput | studentCreateManyInstructorInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type studentUpsertWithWhereUniqueWithoutInstructorInput = {
-    where: studentWhereUniqueInput
-    update: XOR<studentUpdateWithoutInstructorInput, studentUncheckedUpdateWithoutInstructorInput>
-    create: XOR<studentCreateWithoutInstructorInput, studentUncheckedCreateWithoutInstructorInput>
-  }
-
-  export type studentUpdateWithWhereUniqueWithoutInstructorInput = {
-    where: studentWhereUniqueInput
-    data: XOR<studentUpdateWithoutInstructorInput, studentUncheckedUpdateWithoutInstructorInput>
-  }
-
-  export type studentUpdateManyWithWhereWithoutInstructorInput = {
-    where: studentScalarWhereInput
-    data: XOR<studentUpdateManyMutationInput, studentUncheckedUpdateManyWithoutInstructorInput>
-  }
-
-  export type studentScalarWhereInput = {
-    AND?: studentScalarWhereInput | studentScalarWhereInput[]
-    OR?: studentScalarWhereInput[]
-    NOT?: studentScalarWhereInput | studentScalarWhereInput[]
-    id?: IntFilter<"student"> | number
-    name?: StringNullableFilter<"student"> | string | null
-    cohort?: StringNullableFilter<"student"> | string | null
-    instructorId?: IntNullableFilter<"student"> | number | null
-  }
-
-  export type instructorCreateWithoutStudentsInput = {
-    username?: string | null
-    password?: string | null
-  }
-
-  export type instructorUncheckedCreateWithoutStudentsInput = {
-    id?: number
-    username?: string | null
-    password?: string | null
-  }
-
-  export type instructorCreateOrConnectWithoutStudentsInput = {
-    where: instructorWhereUniqueInput
-    create: XOR<instructorCreateWithoutStudentsInput, instructorUncheckedCreateWithoutStudentsInput>
-  }
-
-  export type instructorUpsertWithoutStudentsInput = {
-    update: XOR<instructorUpdateWithoutStudentsInput, instructorUncheckedUpdateWithoutStudentsInput>
-    create: XOR<instructorCreateWithoutStudentsInput, instructorUncheckedCreateWithoutStudentsInput>
-    where?: instructorWhereInput
-  }
-
-  export type instructorUpdateToOneWithWhereWithoutStudentsInput = {
-    where?: instructorWhereInput
-    data: XOR<instructorUpdateWithoutStudentsInput, instructorUncheckedUpdateWithoutStudentsInput>
-  }
-
-  export type instructorUpdateWithoutStudentsInput = {
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type instructorUncheckedUpdateWithoutStudentsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type studentCreateManyInstructorInput = {
-    id?: number
-    name?: string | null
-    cohort?: string | null
-  }
-
-  export type studentUpdateWithoutInstructorInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    cohort?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type studentUncheckedUpdateWithoutInstructorInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    cohort?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type studentUncheckedUpdateManyWithoutInstructorInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    cohort?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

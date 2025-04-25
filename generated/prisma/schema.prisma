@@ -15,16 +15,16 @@ datasource db {
 }
 
 model instructor {
-  id       Int       @id @default(autoincrement())
-  username String?   @unique
-  password String?   @db.VarChar(100)
-  students student[] @relation
+  id       Int     @id @default(autoincrement())
+  username String? @unique
+  password String? @db.VarChar(100)
+  // students  student[] @relation 
 }
 
 model student {
-  id           Int         @id @default(autoincrement())
-  name         String?     @db.VarChar(20)
-  cohort       String?     @db.VarChar(100)
+  id           Int     @id @default(autoincrement())
+  name         String? @db.VarChar(20)
+  cohort       String? @db.VarChar(100)
   instructorId Int?
-  instructor   instructor? @relation(fields: [instructorId], references: [id])
+  // instructor    instructor? @relation(fields: [instructorId], references: [id])
 }
